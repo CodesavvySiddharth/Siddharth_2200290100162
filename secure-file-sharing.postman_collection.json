@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "Secure File Sharing API",
+    "_postman_id": "12345678-1234-1234-1234-1234567890ab",
+    "description": "Sample collection for testing FastAPI secure file sharing system.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Ops Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "username", "value": "ops@example.com", "type": "text" },
+            { "key": "password", "value": "opspassword", "type": "text" }
+          ]
+        },
+        "url": { "raw": "http://127.0.0.1:8000/ops/login", "protocol": "http", "host": ["127.0.0.1"], "port": "8000", "path": ["ops", "login"] }
+      }
+    },
+    {
+      "name": "Ops Upload File",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer <access_token>", "type": "text" }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "file", "type": "file", "src": "" }
+          ]
+        },
+        "url": { "raw": "http://127.0.0.1:8000/ops/upload", "protocol": "http", "host": ["127.0.0.1"], "port": "8000", "path": ["ops", "upload"] }
+      }
+    },
+    {
+      "name": "Client Signup",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json", "type": "text" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"client@example.com\",\n  \"password\": \"clientpassword\"\n}"
+        },
+        "url": { "raw": "http://127.0.0.1:8000/client/signup", "protocol": "http", "host": ["127.0.0.1"], "port": "8000", "path": ["client", "signup"] }
+      }
+    },
+    {
+      "name": "Client Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "username", "value": "client@example.com", "type": "text" },
+            { "key": "password", "value": "clientpassword", "type": "text" }
+          ]
+        },
+        "url": { "raw": "http://127.0.0.1:8000/client/login", "protocol": "http", "host": ["127.0.0.1"], "port": "8000", "path": ["client", "login"] }
+      }
+    },
+    {
+      "name": "Client List Files",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer <client_access_token>", "type": "text" }
+        ],
+        "url": { "raw": "http://127.0.0.1:8000/client/files", "protocol": "http", "host": ["127.0.0.1"], "port": "8000", "path": ["client", "files"] }
+      }
+    }
+  ]
+}
